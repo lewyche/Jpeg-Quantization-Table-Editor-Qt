@@ -20,12 +20,16 @@ public:
     void importPressed();
 private slots:
     void on_back_clicked();
-
     void on_next_clicked();
 
-private:
+    void on_hexEdit_textChanged();
 
+    void on_save_clicked();
+
+private:
     void setHexEdit(std::string str);
+
+    bool imageImported;
 
     editJpeg jpegEditor;
     Ui::MainWindow *ui;

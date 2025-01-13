@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->actionImport, &QAction::triggered, this, &MainWindow::importPressed);
+    imageImported = false;
 }
 
 MainWindow::~MainWindow()
@@ -25,6 +26,8 @@ void MainWindow::importPressed() {
         ui->imageDisplay->setPixmap(QPixmap::fromImage(image));
         jpegEditor.importJpeg(path.toStdString());
         setHexEdit(jpegEditor.getQuantTable(0));
+        imageImported = true;
+        ui->hexEditStatus->setText("Input Good");
     } else {
         QMessageBox::information(this, "Invaild File", "File Not JPEG!");
     }
@@ -48,5 +51,22 @@ void MainWindow::on_next_clicked()
     if(table != "") {
         setHexEdit(table);
     }
+}
+
+void MainWindow::on_hexEdit_textChanged()
+{
+    if(imageImported) {
+        bool result = jpegEditor.tableChanged(ui->hexEdit->toPlainText().toStdString());
+        if(result) {
+            ui->hexEditStatus->setText("Input Good");
+        } else {
+            ui->hexEditStatus->setText("Input Invalid!");
+        }
+    }
+}
+
+void MainWindow::on_save_clicked()
+{
+
 }
 

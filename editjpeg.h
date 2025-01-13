@@ -17,12 +17,20 @@ public:
     std::string getPrevTable();
     std::string getNextTable();
 
+    bool tableChanged(std::string table);
+
 private:
     void findQuantTable();
+    std::vector<std::string>convertTable(std::string table);
+
+    bool isTableValid(std::vector<std::string>table);
+    void insertQuantTable(std::vector<std::string>table);
 
     int currTable;
 
+    //image in binary
     std::vector<uint8_t>imageBytes;
+    //image in hexadecimal
     std::vector<std::string>imageHex;
 
     std::vector<int>quantTablesIndex;
