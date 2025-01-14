@@ -110,14 +110,14 @@ std::vector<std::string> editJpeg::convertTable(std::string table) {
 void editJpeg::insertQuantTable(std::vector<std::string> table) {
     int index = quantTablesIndex[currTable] + 5;
     for(int i = index; i < index + 64; ++i) {
-        imageHex[i] = table[i];
+        imageHex[i] = table[i - index];
     }
 }
 
 bool editJpeg::tableChanged(std::string table) {
     std::vector<std::string>newTable = convertTable(table);
     if(isTableValid(newTable)) {
-        //insertQuantTable(newTable);
+        insertQuantTable(newTable);
         return true;
     } else {
         return false;
