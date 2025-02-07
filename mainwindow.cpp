@@ -79,25 +79,9 @@ void MainWindow::on_hexEdit_textChanged()
 
 void MainWindow::on_save_clicked()
 {
-/*
-    std::vector<unsigned char>imageBytes = jpegEditor.getImageBytesChar();
-
-    unsigned char arr[imageBytes.size()];
-    for(int i = 0; i < imageBytes.size(); ++i) {
-        arr[i] = imageBytes[i];
-    }
-
-    QImage newImage;
-    bool isLoaded = newImage.loadFromData(arr, imageBytes.size(), "JPEG");
-    //QImageWriter qWriter(QDir::currentPath());
-    //qWriter.write(newImage);
-    ui->imageDisplay->setPixmap(QPixmap::fromImage(newImage));
-*/
-
     jpegEditor.writeJpeg();
     QImage newImage;
-    bool valid = newImage.load("test.jpg", "JPEG");
+    newImage.load("test.jpg", "JPEG");
     ui->imageDisplay->setPixmap(QPixmap::fromImage(newImage));
-
 }
 

@@ -36,6 +36,9 @@
     <property name="text">
      <string>Import a Jpeg!</string>
     </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>

@@ -34,6 +34,8 @@ private:
     uint8_t hexToUint8(const std::string &hex);
     uint8_t hexCharToValue(char c);
 
+    void resetData();
+
     int currTable;
 
     //image in binary

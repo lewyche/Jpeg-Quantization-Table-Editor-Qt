@@ -26,7 +26,15 @@ void editJpeg::findQuantTable() {
     }
 }
 
+void editJpeg::resetData() {
+    imageHex.clear();
+    imageBytes.clear();
+    quantTablesIndex.clear();
+}
+
 void editJpeg::importJpeg(std::string path) {
+    resetData();
+
     std::ifstream file(path, std::ios::binary);
     char byte;
     //get file binary
