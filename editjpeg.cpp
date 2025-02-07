@@ -2,7 +2,7 @@
 #include <filesystem>
 #include <fstream>
 #include <sstream>
-
+#include <cctype>
 
 editJpeg::editJpeg() {}
 
@@ -29,9 +29,11 @@ void editJpeg::findQuantTable() {
 void editJpeg::importJpeg(std::string path) {
     std::ifstream file(path, std::ios::binary);
     char byte;
+    //get file binary
     while(file.get(byte)) {
         imageBytes.push_back(static_cast<uint8_t>(byte));
     }
+    //convert to hexadecimal
     for(size_t i = 0; i < imageBytes.size(); ++i) {
         std::stringstream ss;
         ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(imageBytes[i]);
@@ -43,15 +45,22 @@ void editJpeg::importJpeg(std::string path) {
 }
 
 std::string editJpeg::getImageHex() {
-    std::string imageBytesString;
+    std::string imageHexString;
     for(size_t i = 0; i < imageHex.size(); ++i) {
-        imageBytesString += imageHex[i] + " ";
+        imageHexString += imageHex[i] + " ";
+    }
+    return imageHexString;
+}
+
+std::string editJpeg::getImageBytesStr() {
+    std::string imageBytesString;
+    for(size_t i = 0; i < imageBytes.size(); ++i) {
+        imageBytesString += std::to_string(imageBytes[i]) + " ";
     }
     return imageBytesString;
 }
 
-
-std::string editJpeg::getQuantTable(int index) {
+std::string editJpeg::getQuantTableStr(int index) {
     currTable = index;
     if(quantTablesIndex.size() > 0) {
         //skip quant table markers
@@ -69,14 +78,14 @@ std::string editJpeg::getQuantTable(int index) {
 
 std::string editJpeg::getPrevTable() {
     if(currTable - 1 >= 0) {
-        return getQuantTable(currTable - 1);
+        return getQuantTableStr(currTable - 1);
     }
     return "";
 }
 
 std::string editJpeg::getNextTable() {
     if(currTable + 1 < quantTablesIndex.size()) {
-        return getQuantTable(currTable + 1);
+        return getQuantTableStr(currTable + 1);
     }
     return "";
 }
@@ -96,11 +105,12 @@ bool editJpeg::isTableValid(std::vector<std::string> table) {
     return true;
 }
 
+//tokenize table into vector
 std::vector<std::string> editJpeg::convertTable(std::string table) {
     std::string tmp;
     std::stringstream ss(table);
     std::vector<std::string> newTable;
-    while(getline(ss, tmp, ' ')) {
+    while(std::getline(ss, tmp, ' ')) {
         newTable.push_back(tmp);
     }
     return newTable;
@@ -114,12 +124,45 @@ void editJpeg::insertQuantTable(std::vector<std::string> table) {
     }
 }
 
+uint8_t editJpeg::hexCharToValue(char c) {
+    c = std::toupper(c);
+    if (c >= '0' && c <= '9') {
+        return c - '0';
+    } else if (c >= 'A' && c <= 'F') {
+        return 10 + (c - 'A');
+    }
+}
+
+uint8_t editJpeg::hexToUint8(const std::string &hex) {
+    uint8_t high = hexCharToValue(hex[0]);
+    uint8_t low = hexCharToValue(hex[1]);
+    return (high << 4) | low;
+}
+
+//convert imageHex to binary and copy it onto imageBytes
+void editJpeg::convertImageHex() {
+    for(int i = 0; i < imageHex.size(); ++i) {
+
+        imageBytes[i] = hexToUint8(imageHex[i]);
+
+    }
+}
+
+//return whether table was successfully changed
 bool editJpeg::tableChanged(std::string table) {
     std::vector<std::string>newTable = convertTable(table);
     if(isTableValid(newTable)) {
         insertQuantTable(newTable);
+        convertImageHex();
         return true;
     } else {
         return false;
     }
+}
+
+void editJpeg::writeJpeg() {
+    //C-Style write in binary
+    FILE* fil = fopen("test.jpg", "wb");
+    fwrite(imageBytes.data(), sizeof(uint8_t),imageBytes.size(), fil);
+    fclose(fil);
 }

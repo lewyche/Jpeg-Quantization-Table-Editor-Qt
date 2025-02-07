@@ -4,6 +4,11 @@
 #include <QString>
 #include <QFileDialog>
 #include <QPixmap>
+#include <QByteArrayView>
+#include <QImage>
+#include <QImageWriter>
+#include <QTextStream>
+#include <QFile>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,10 +29,17 @@ void MainWindow::importPressed() {
     if(jpegEditor.verifyFile(path.toStdString())) {
         QImage image(path);
         ui->imageDisplay->setPixmap(QPixmap::fromImage(image));
+
+        //tell jpegEditor the path of the image
         jpegEditor.importJpeg(path.toStdString());
-        setHexEdit(jpegEditor.getQuantTable(0));
-        imageImported = true;
+
+        setHexEdit(jpegEditor.getQuantTableStr(0));
+
         ui->hexEditStatus->setText("Input Good");
+        imageImported = true;
+
+    } else if (path == "") {
+
     } else {
         QMessageBox::information(this, "Invaild File", "File Not JPEG!");
     }
@@ -67,6 +79,25 @@ void MainWindow::on_hexEdit_textChanged()
 
 void MainWindow::on_save_clicked()
 {
+/*
+    std::vector<unsigned char>imageBytes = jpegEditor.getImageBytesChar();
+
+    unsigned char arr[imageBytes.size()];
+    for(int i = 0; i < imageBytes.size(); ++i) {
+        arr[i] = imageBytes[i];
+    }
+
+    QImage newImage;
+    bool isLoaded = newImage.loadFromData(arr, imageBytes.size(), "JPEG");
+    //QImageWriter qWriter(QDir::currentPath());
+    //qWriter.write(newImage);
+    ui->imageDisplay->setPixmap(QPixmap::fromImage(newImage));
+*/
+
+    jpegEditor.writeJpeg();
+    QImage newImage;
+    bool valid = newImage.load("test.jpg", "JPEG");
+    ui->imageDisplay->setPixmap(QPixmap::fromImage(newImage));
 
 }
 
