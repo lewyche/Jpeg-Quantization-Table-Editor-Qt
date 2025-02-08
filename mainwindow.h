@@ -18,6 +18,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void importPressed();
+
 private slots:
     void on_back_clicked();
     void on_next_clicked();

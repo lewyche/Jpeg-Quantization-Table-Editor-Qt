@@ -10,14 +10,17 @@ CONFIG += c++17
 
 SOURCES += \
     editjpeg.cpp \
+    form.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     editjpeg.h \
+    form.h \
     mainwindow.h
 
 FORMS += \
+    form.ui \
     mainwindow.ui
 
 # Default rules for deployment.
