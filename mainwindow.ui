@@ -79,7 +79,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Save</string>
+     <string>Apply Changes</string>
     </property>
    </widget>
    <widget class="QLabel" name="hexEditStatus">
