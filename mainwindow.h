@@ -30,6 +30,10 @@ private slots:
 private:
     void setHexEdit(std::string str);
 
+    void setColourSpace();
+
+    void changeQuantTable(std::string table);
+
     bool imageImported;
 
     editJpeg jpegEditor;

@@ -84,6 +84,19 @@ std::string editJpeg::getQuantTableStr(int index) {
     }
 }
 
+std::string editJpeg::getColourSpaceText() {
+    int colourSpaceIndex = quantTablesIndex[currTable] + 4;
+    std::string colourSpace = imageHex[colourSpaceIndex];
+
+    if(colourSpace == "00") {
+        return "Luminance";
+    } else if(colourSpace == "01") {
+        return "Chrominance";
+    } else {
+        return "Other";
+    }
+}
+
 std::string editJpeg::getPrevTable() {
     if(currTable - 1 >= 0) {
         return getQuantTableStr(currTable - 1);
@@ -98,15 +111,24 @@ std::string editJpeg::getNextTable() {
     return "";
 }
 
-bool editJpeg::isTableValid(std::vector<std::string> table) {
+bool editJpeg::isStringHex(std::string str) {
     std::string validChars = "0123456789abcdefABCDEF";
 
+    for(size_t i = 0; i < str.size(); ++i) {
+        if(str.size() != 2 || str.find_first_not_of(validChars) != std::string::npos) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool editJpeg::isTableValid(std::vector<std::string> table) {
     if(table.size() != 64) {
         return false;
     }
 
     for(size_t i = 0; i < table.size(); ++i) {
-        if(table[i].size() != 2 || table[i].find_first_not_of(validChars) != std::string::npos) {
+        if(!isStringHex(table[i])) {
             return false;
         }
     }
@@ -150,9 +172,9 @@ uint8_t editJpeg::hexToUint8(const std::string &hex) {
 //convert imageHex to binary and copy it onto imageBytes
 void editJpeg::convertImageHex() {
     for(int i = 0; i < imageHex.size(); ++i) {
-
-        imageBytes[i] = hexToUint8(imageHex[i]);
-
+        if(imageHex[i] != "\0") {
+            imageBytes[i] = hexToUint8(imageHex[i]);
+        }
     }
 }
 

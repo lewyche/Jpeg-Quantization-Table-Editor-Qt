@@ -10,10 +10,14 @@ class editJpeg
 public:
     editJpeg();
     bool verifyFile(std::string path);
+    bool isStringHex(std::string str);
     void importJpeg(std::string path);
+
     std::string getImageHex();
     std::string getImageBytesStr();
     std::string getQuantTableStr(int index);
+
+    std::string getColourSpaceText();
 
     std::string getPrevTable();
     std::string getNextTable();

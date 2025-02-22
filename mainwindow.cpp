@@ -35,6 +35,8 @@ void MainWindow::importPressed() {
 
         setHexEdit(jpegEditor.getQuantTableStr(0));
 
+        setColourSpace();
+
         ui->hexEditStatus->setText("Input Good");
         imageImported = true;
 
@@ -49,20 +51,32 @@ void MainWindow::setHexEdit(std::string str) {
     ui->hexEdit->setPlainText(QString::fromStdString(str));
 }
 
+void MainWindow::setColourSpace() {
+    QString currColourSpace = QString::fromStdString(jpegEditor.getColourSpaceText());
+    QString colourSpaceText = "";
+    if(currColourSpace != "other") {
+        colourSpaceText += "Currently editing: " + currColourSpace + " table";
+    }
+    ui->colorSpace->setText(colourSpaceText);
+}
+
+void MainWindow::changeQuantTable(std::string table) {
+    if(table != "") {
+        setHexEdit(table);
+        setColourSpace();
+    }
+}
+
 void MainWindow::on_back_clicked()
 {
     std::string table = jpegEditor.getPrevTable();
-    if(table != "") {
-        setHexEdit(table);
-    }
+    changeQuantTable(table);
 }
 
 void MainWindow::on_next_clicked()
 {
     std::string table = jpegEditor.getNextTable();
-    if(table != "") {
-        setHexEdit(table);
-    }
+    changeQuantTable(table);
 }
 
 void MainWindow::on_hexEdit_textChanged()
