@@ -24,6 +24,8 @@ public:
 
     bool tableChanged(std::string table);
 
+    std::string calculateQuantizationTable(int qFactor);
+
     void writeJpeg();
 
 private:
@@ -35,6 +37,7 @@ private:
 
     void convertImageHex();
 
+    std::string uint8ToHex(uint8_t);
     uint8_t hexToUint8(const std::string &hex);
     uint8_t hexCharToValue(char c);
 

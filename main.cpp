@@ -9,7 +9,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    Form f;
-    //f.show();
     return a.exec();
 }

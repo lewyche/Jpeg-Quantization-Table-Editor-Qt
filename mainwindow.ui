@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
+      <y>100</y>
       <width>381</width>
-      <height>471</height>
+      <height>461</height>
      </rect>
     </property>
    </widget>
@@ -48,7 +48,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>56</width>
+      <width>101</width>
       <height>21</height>
      </rect>
     </property>
@@ -59,9 +59,9 @@
    <widget class="QPushButton" name="next">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>115</x>
       <y>10</y>
-      <width>56</width>
+      <width>111</width>
       <height>21</height>
      </rect>
     </property>
@@ -72,9 +72,9 @@
    <widget class="QPushButton" name="save">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>230</x>
       <y>10</y>
-      <width>91</width>
+      <width>161</width>
       <height>21</height>
      </rect>
     </property>
@@ -86,7 +86,7 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>10</y>
+      <y>40</y>
       <width>161</width>
       <height>16</height>
      </rect>
@@ -98,41 +98,25 @@
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>60</y>
-      <width>331</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>50</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
-      <width>37</width>
+      <y>70</y>
+      <width>91</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Quality:</string>
+     <string>Image Quality:</string>
     </property>
    </widget>
    <widget class="QLabel" name="colorSpace">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>39</y>
-      <width>381</width>
+      <y>40</y>
+      <width>211</width>
       <height>16</height>
      </rect>
     </property>
@@ -141,6 +125,41 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="setQuality">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>70</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Set Quality</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="qualitySlider">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>70</y>
+      <width>171</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>50</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
     </property>
    </widget>
   </widget>

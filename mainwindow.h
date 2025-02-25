@@ -27,12 +27,16 @@ private slots:
 
     void on_save_clicked();
 
+    void on_setQuality_clicked();
+
 private:
     void setHexEdit(std::string str);
 
     void setColourSpace();
 
     void changeQuantTable(std::string table);
+
+    void saveImage();
 
     bool imageImported;
 

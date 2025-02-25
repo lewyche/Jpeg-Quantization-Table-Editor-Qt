@@ -40,6 +40,8 @@ void MainWindow::importPressed() {
         ui->hexEditStatus->setText("Input Good");
         imageImported = true;
 
+        ui->qualitySlider->setEnabled(true);
+
     } else if (path == "") {
 
     } else {
@@ -91,11 +93,25 @@ void MainWindow::on_hexEdit_textChanged()
     }
 }
 
-void MainWindow::on_save_clicked()
-{
+void MainWindow::saveImage() {
     jpegEditor.writeJpeg();
     QImage newImage;
     newImage.load("test.jpg", "JPEG");
     ui->imageDisplay->setPixmap(QPixmap::fromImage(newImage));
+}
+
+void MainWindow::on_save_clicked()
+{
+    saveImage();
+}
+
+void MainWindow::on_setQuality_clicked()
+{
+    if(imageImported) {
+        int position = ui->qualitySlider->value();
+        std::string newQuantString = jpegEditor.calculateQuantizationTable(position);
+        setHexEdit(newQuantString);
+        saveImage();
+    }
 }
 

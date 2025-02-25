@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <cctype>
+#include <cmath>
 
 editJpeg::editJpeg() {}
 
@@ -32,6 +33,13 @@ void editJpeg::resetData() {
     quantTablesIndex.clear();
 }
 
+std::string editJpeg::uint8ToHex(uint8_t val) {
+    std::stringstream ss;
+    ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(val);
+    std::string hex = ss.str();
+    return hex;
+}
+
 void editJpeg::importJpeg(std::string path) {
     resetData();
 
@@ -43,10 +51,7 @@ void editJpeg::importJpeg(std::string path) {
     }
     //convert to hexadecimal
     for(size_t i = 0; i < imageBytes.size(); ++i) {
-        std::stringstream ss;
-        ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(imageBytes[i]);
-        std::string hex = ss.str();
-        imageHex.push_back(hex);
+        imageHex.push_back(uint8ToHex(imageBytes[i]));
     }
     findQuantTable();
     file.close();
@@ -195,4 +200,48 @@ void editJpeg::writeJpeg() {
     FILE* fil = fopen("test.jpg", "wb");
     fwrite(imageBytes.data(), sizeof(uint8_t),imageBytes.size(), fil);
     fclose(fil);
+}
+
+//Quantization table calculation method by Independent JPEG Group(IJG)
+std::string editJpeg::calculateQuantizationTable(int qFactor) {
+    int S = 0;
+
+    if(qFactor < 50) {
+        S = 5000 / qFactor;
+    } else {
+        S = 200 - 2 * qFactor;
+    }
+
+    std::vector<uint8_t>quantTableBytes;
+
+    int quantIndex = quantTablesIndex[currTable] + 5;
+    for(int i = quantIndex; i < quantIndex + 64; ++i) {
+        int zeroIndex = i - quantIndex;
+        quantTableBytes.push_back(hexToUint8(imageHex[i]));
+
+        uint8_t val = quantTableBytes[zeroIndex];
+
+        val = std::floor((S * val + 50)) / 100;
+
+        if(val == 0) {
+            val = 1;
+        } else if(val > 255) {
+            val = 255;
+        }
+
+        quantTableBytes[zeroIndex] = val;
+    }
+
+    std::vector<std::string>quantTableHex;
+
+    std::string newQuantString;
+    for(int i = 0; i < quantTableBytes.size(); ++i) {
+        quantTableHex.push_back(uint8ToHex(quantTableBytes[i]));
+        newQuantString += quantTableHex[i] + " ";
+    }
+
+    insertQuantTable(quantTableHex);
+    convertImageHex();
+
+    return newQuantString;
 }
