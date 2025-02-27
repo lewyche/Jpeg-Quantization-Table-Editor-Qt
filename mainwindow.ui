@@ -14,153 +14,158 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPlainTextEdit" name="hexEdit">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>100</y>
-      <width>381</width>
+      <x>390</x>
+      <y>0</y>
+      <width>411</width>
+      <height>561</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="imageDisplay">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Import a Jpeg!</string>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>99</y>
+      <width>391</width>
       <height>461</height>
      </rect>
     </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPlainTextEdit" name="hexEdit"/>
+     </item>
+    </layout>
    </widget>
-   <widget class="QLabel" name="imageDisplay">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>396</x>
-      <y>11</y>
-      <width>401</width>
-      <height>551</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Import a Jpeg!</string>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="back">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>101</width>
+      <x>0</x>
+      <y>0</y>
+      <width>391</width>
       <height>21</height>
      </rect>
     </property>
-    <property name="text">
-     <string>&lt;</string>
-    </property>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="2">
+      <widget class="QPushButton" name="save">
+       <property name="text">
+        <string>Apply Changes</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="back">
+       <property name="text">
+        <string>&lt;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="next">
+       <property name="text">
+        <string>&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="next">
+   <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>115</x>
-      <y>10</y>
-      <width>111</width>
-      <height>21</height>
+      <x>0</x>
+      <y>60</y>
+      <width>391</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="text">
-     <string>&gt;</string>
-    </property>
+    <layout class="QGridLayout" name="gridLayout_6">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Image Quality:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QSlider" name="qualitySlider">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>50</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="setQuality">
+       <property name="text">
+        <string>Set Quality</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="save">
+   <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>10</y>
-      <width>161</width>
-      <height>21</height>
+      <x>0</x>
+      <y>20</y>
+      <width>391</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Apply Changes</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="hexEditStatus">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>40</y>
-      <width>161</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>No Image</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Image Quality:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="colorSpace">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>211</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="setQuality">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>70</y>
-      <width>101</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Set Quality</string>
-    </property>
-   </widget>
-   <widget class="QSlider" name="qualitySlider">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>70</y>
-      <width>171</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>1</number>
-    </property>
-    <property name="maximum">
-     <number>100</number>
-    </property>
-    <property name="value">
-     <number>50</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0">
+      <widget class="QLabel" name="colorSpace">
+       <property name="text">
+        <string>ballsack</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="hexEditStatus">
+       <property name="text">
+        <string>No Image</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>-1</x>
+     <y>109</y>
+     <width>211</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPlainTextEdit" name="plainTextEdit"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>0</y>
+     <width>191</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>211</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>&lt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>20</y>
+     <width>211</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>No Image</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
+     <width>211</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="2">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QSlider" name="horizontalSlider">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
