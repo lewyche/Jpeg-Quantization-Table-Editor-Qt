@@ -29,8 +29,6 @@ private slots:
 
     void on_setQuality_clicked();
 
-    void on_actionSave_As_triggered();
-
 private:
     void setHexEdit(std::string str);
 
