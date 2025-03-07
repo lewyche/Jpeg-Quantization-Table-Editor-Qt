@@ -28,6 +28,10 @@ void MainWindow::importPressed() {
     QString path = QFileDialog::getOpenFileName(this, "Open Jpeg", QDir::homePath());
     if(jpegEditor.verifyFile(path.toStdString())) {
         QImage image(path);
+        if(image.isNull()) {
+            QMessageBox::information(this, "Bad Image", "Something is wrong with the image!");
+            return;
+        }
         ui->imageDisplay->setPixmap(QPixmap::fromImage(image));
 
         //tell jpegEditor the path of the image
@@ -115,3 +119,15 @@ void MainWindow::on_setQuality_clicked()
     }
 }
 
+/*
+void MainWindow::on_actionSave_As_triggered()
+{
+    if(imageImported) {
+        QFile newImage("test.jpg");
+        QByteArray imgData = newImage.readAll();
+        QFileDialog::saveFileContent(imgData, "myJpeg.jpeg");
+    } else {
+        QMessageBox::information(this, "Image Not Imported", "No Image to save!");
+    }
+}
+*/
