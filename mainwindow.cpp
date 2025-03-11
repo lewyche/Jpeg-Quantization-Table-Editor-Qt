@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->actionImport, &QAction::triggered, this, &MainWindow::importPressed);
     imageImported = false;
+    this->setWindowTitle("Jpeg Quantization Table Editor Qt");
 }
 
 MainWindow::~MainWindow()
@@ -119,15 +120,14 @@ void MainWindow::on_setQuality_clicked()
     }
 }
 
-/*
 void MainWindow::on_actionSave_As_triggered()
 {
     if(imageImported) {
-        QFile newImage("test.jpg");
-        QByteArray imgData = newImage.readAll();
-        QFileDialog::saveFileContent(imgData, "myJpeg.jpeg");
+        QString filePath = QFileDialog::getSaveFileName(this, tr("Save Jpeg"), "", "Images(*.jpg)");
+        jpegEditor.writeJpeg(filePath.toStdString());
     } else {
         QMessageBox::information(this, "Image Not Imported", "No Image to save!");
     }
+
 }
-*/
+

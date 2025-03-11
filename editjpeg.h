@@ -27,6 +27,7 @@ public:
     std::string calculateQuantizationTable(int qFactor);
 
     void writeJpeg();
+    void writeJpeg(std::string path);
 
 private:
     void findQuantTable();

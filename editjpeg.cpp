@@ -202,6 +202,12 @@ void editJpeg::writeJpeg() {
     fclose(fil);
 }
 
+void editJpeg::writeJpeg(std::string path) {
+    FILE* fil = fopen(path.c_str(), "wb");
+    fwrite(imageBytes.data(), sizeof(uint8_t),imageBytes.size(), fil);
+    fclose(fil);
+}
+
 //Quantization table calculation method by Independent JPEG Group(IJG)
 std::string editJpeg::calculateQuantizationTable(int qFactor) {
     int S = 0;
