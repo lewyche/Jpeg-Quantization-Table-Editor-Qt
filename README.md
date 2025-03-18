@@ -15,6 +15,14 @@ The primary uses for this program include:
   - The text field must always have 64 valid hexadecimal numbers, the program will indicate whether the input is valid.
   - Always press save after making edits to see your changes.
 
+### Contributing
+- Linux
+  - Install Qt 6.8.2 or higher
+  - Install Qt Creator
+  - Set compiler to GCC
+  - If cannot find -IGL, install OpenGL development libraries
+    - ex: sudo apt install libl1-mesa-dev
+
 ### Downloads
 Downloads can be found in the releases section.
 
