@@ -19,5 +19,4 @@ The primary uses for this program include:
 Downloads can be found in the releases section.
 
 ### Future updates
-- Linux and Mac versions.
-- Allow for easier saving of images (Your image is currently located within the program files as "test.jpg").
+- Mac version.
